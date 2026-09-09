@@ -1,0 +1,16 @@
+{
+	"name": "2key-scomm-seed-templates",
+	"private": true,
+	"type": "module",
+	"description": "Scomm shop catalog (JSON). Run npm run validate before a PR. We apply it to Scomm billing — you do not need the billing engine.",
+	"scripts": {
+		"validate": "node scripts/validate-catalog.mjs"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"devDependencies": {
+		"ajv": "^8.20.0",
+		"ajv-formats": "^3.0.1"
+	}
+}
