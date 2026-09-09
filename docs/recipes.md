@@ -35,20 +35,35 @@ Change `5` to the new amount. Keep `"USD"`.
 ## Change the text customers see
 
 - Plan blurb → `description` on that **plan**
-- Add-on label in apps → `displayName` on that **offering** (under `offerings`)
+- Add-on label in apps → `displayName` on that **offering** (under `offerings`, not `plans`)
 
 Do not change the quoted **key**.
 
 ## Stop selling
 
-On the plan (or offering) set `"isActive": false`. Do **not** delete the key.
+On the plan (or offering) set `"isActive": false`. Do **not** delete the key. If anyone still subscribes, apply will fail.
 
 ## Add an add-on or app
 
-You add the keys. Your billing contact will sit with you. Then `npm ci && npm run validate`, commit `hosts.json` if it changed, open a PR. Field list: [catalog.md](catalog.md).
+You add the keys. Your billing contact will sit with you.
+
+1. Put the offering under `products.Scomm.offerings` (give it `resources.surfaces` that match a host).
+2. Put a plan under `plans` with `offeringCodes` pointing at that offering key.
+3. `npm ci && npm run validate` — commit `hosts.json` if it changed.
+4. Open a PR.
+
+Field list: [catalog.md](catalog.md). Do not copy [examples/sample-shop/](../examples/sample-shop/) over the live root.
 
 ## First-login emails
 
 Root [`auth.json`](auth.md) is yours to change (no passwords). You open the PR.
+
+## Hard rules
+
+| Do not | Why |
+|--------|-----|
+| Rename a live key | New SKU, not a rename. Add a new key; hide the old one. |
+| Delete a key people still pay for | Apply fails. Use `"isActive": false`. |
+| Hand-edit `hosts.json` / `schemas/` | Validate writes hosts; we ship schemas. |
 
 A green PR is not in the shop until we apply on the Scomm VM.

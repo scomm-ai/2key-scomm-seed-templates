@@ -6,11 +6,15 @@ Scomm’s first-login emails are **root** `auth.json`. You change this file (bil
 
 Keep `"$schema": "./schemas/auth.schema.json"` at the top.
 
-This does **not** grant complimentary subscriptions.
+This does **not** grant complimentary subscriptions. Buying stays in the portal after sign-in.
 
-| Field | Key | Meaning |
-|-------|-----|---------|
+## Shape
+
+See [`examples/auth/auth.json`](../examples/auth/auth.json). That file is not a real customer.
+
+| You fill | Key | Meaning |
+|----------|-----|---------|
 | `users` | Email | Person who can sign in. |
-| `organizations` | Org slug | Stable handle. |
+| `organizations` | Org slug | Stable handle (not the display name). |
 | `members` | Email | Must already appear under `users`. |
-| `payingParty` | — | At most one per org. Billing email. |
+| `payingParty` | — | At most one per org. Billing email for that org. |

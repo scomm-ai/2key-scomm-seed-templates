@@ -6,6 +6,12 @@ Scomm **owns this fork**. They fill and raise PRs. We sit with them on the JSON.
 
 **Our ops job:** when we get `catalog-seed-updated` for `scomm-ai/2key-scomm-seed-templates`, apply that SHA on the **Scomm billing VM**. Do not apply this fork onto some other tenant’s VM.
 
+```
+they fill + PR (we help)
+merge to main → dispatch { sha, ref, catalog_repo }
+we apply that commit on the Scomm VM
+```
+
 Canonical blank: [`2keyapp/2key-seed-templates`](https://github.com/2keyapp/2key-seed-templates).
 
 ## This tenant (Scomm)
@@ -26,8 +32,23 @@ Canonical blank: [`2keyapp/2key-seed-templates`](https://github.com/2keyapp/2key
 
 Support on **their** branch. If CI is red, they fix (we help). We do not take over the PR.
 
+- [examples/sample-shop/](../examples/sample-shop/) is shape only. Do not copy it over Scomm’s live root.
+- `npm ci && npm run validate`; they commit `hosts.json` on their PR.
+- Recipes: [recipes.md](recipes.md). Field list: [catalog.md](catalog.md).
+
+## On trigger (apply)
+
+Checkout this repo at `sha`. Against the **Scomm** VM’s DB:
+
+```bash
+billing-seed validate --dir .
+billing-seed apply --dir .
+```
+
+See [ci-and-ops.md](ci-and-ops.md). If apply fails (unknown currency, omitted live SKU), that is a catalog/VM mismatch — we tell them; we do not silently rewrite their JSON.
+
 ## Do not
 
 - Apply Scomm’s catalog onto another VM
 - Fill and merge as if this repo were ours
-- Give them the billing engine
+- Give them the billing engine, Stripe keys, or SQL

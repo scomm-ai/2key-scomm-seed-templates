@@ -1,6 +1,6 @@
 # `catalog.json`
 
-Day-to-day changes: **[recipes.md](recipes.md)**. This page is the field list.
+Day-to-day changes (price, description, hide a SKU): **[recipes.md](recipes.md)**. This page is the field list.
 
 Do not put database ids in this file. We assign those when we apply.
 
