@@ -1,0 +1,46 @@
+name: Catalog seed
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - name: hosts.json must match catalog.json
+        run: |
+          if [ -n "$(git status --porcelain -- hosts.json)" ]; then
+            echo "hosts.json is stale or untracked; run npm run validate and commit hosts.json"
+            git status --porcelain -- hosts.json
+            exit 1
+          fi
+
+  dispatch:
+    needs: validate
+    if: github.event_name == 'push' && github.repository != '2keyapp/2key-seed-templates'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch catalog-seed-updated
+        env:
+          DOWNSTREAM_DISPATCH_TOKEN: ${{ secrets.DOWNSTREAM_DISPATCH_TOKEN }}
+          DOWNSTREAM_REPO: ${{ vars.DOWNSTREAM_REPO }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DOWNSTREAM_DISPATCH_TOKEN:-}" ] || [ -z "${DOWNSTREAM_REPO:-}" ]; then
+            echo "Set secret DOWNSTREAM_DISPATCH_TOKEN and variable DOWNSTREAM_REPO on this fork."
+            exit 1
+          fi
+          curl -fsS -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${DOWNSTREAM_DISPATCH_TOKEN}" \
+            "https://api.github.com/repos/${DOWNSTREAM_REPO}/dispatches" \
+            -d "{\"event_type\":\"catalog-seed-updated\",\"client_payload\":{\"sha\":\"${GITHUB_SHA}\",\"ref\":\"${GITHUB_REF}\",\"catalog_repo\":\"${GITHUB_REPOSITORY}\"}}"
