@@ -1,0 +1,101 @@
+{
+	"$schema": "../../schemas/catalog.schema.json",
+	"schemaVersion": 1,
+	"surfaces": ["scomm", "office"],
+	"platforms": ["linux"],
+	"hosts": {
+		"scommDesktop": {
+			"surfaces": ["scomm"],
+			"excludePlatforms": ["linux"]
+		},
+		"scommLinux": {
+			"surfaces": ["scomm"]
+		},
+		"office": {
+			"surfaces": ["office"],
+			"excludePlatforms": ["linux"]
+		}
+	},
+	"products": {
+		"Scomm": {
+			"description": "Scomm Email and Office add-ons",
+			"isActive": true,
+			"meters": {
+				"scomm.ai.tokens": {
+					"displayName": "Scomm AI tokens",
+					"unit": "token",
+					"aggregation": "sum"
+				}
+			},
+			"offerings": {
+				"pgp": {
+					"displayName": "Outlook OpenPGP ECC",
+					"resources": {
+						"addonCode": "pgp",
+						"surfaces": ["office"]
+					}
+				},
+				"pqc": {
+					"displayName": "Outlook OpenPGP ECC+PQC",
+					"resources": {
+						"addonCode": "pqc",
+						"surfaces": ["scomm", "office"]
+					}
+				},
+				"linux": {
+					"displayName": "Linux Version",
+					"resources": {
+						"addonCode": "linux",
+						"surfaces": ["scomm"],
+						"platforms": ["linux"]
+					}
+				},
+				"ai_assistant": {
+					"displayName": "Local-AI",
+					"resources": {
+						"addonCode": "ai_assistant",
+						"surfaces": ["scomm", "office"]
+					}
+				}
+			},
+			"plans": {
+				"Outlook OpenPGP ECC": {
+					"offeringCodes": ["pgp"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 5
+						}
+					}
+				},
+				"Outlook OpenPGP ECC+PQC": {
+					"offeringCodes": ["pqc"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 15
+						}
+					}
+				},
+				"Linux Version": {
+					"offeringCodes": ["linux"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 5
+						}
+					}
+				},
+				"Local-AI": {
+					"offeringCodes": ["ai_assistant"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 5
+						}
+					}
+				}
+			}
+		}
+	}
+}
