@@ -1,22 +1,36 @@
-# Change the shop
+# Change the shop (Scomm)
 
-This is **your** `catalog.json`. Edit it, open a pull request. Your billing contact will help with the JSON. You do not run apply — we apply when your fork triggers **your** VM.
+This is **your** [`catalog.json`](../catalog.json). Edit it, open a pull request. Your billing contact will help. You do not run apply — we apply when this fork triggers the **Scomm VM**.
 
-The shop card **title** is the plan **key** (the quoted name under `plans`). Search the file for that title.
+Shop card **titles** are the plan keys below. Search the file for the quoted name.
+
+## Your plan keys
+
+| Shop title | Offering key (do not rename) |
+|------------|------------------------------|
+| Outlook OpenPGP ECC | `pgp` |
+| Outlook OpenPGP ECC+PQC | `pqc` |
+| Linux Version | `linux` |
+| Local-AI | `ai_assistant` |
+| SComm Connect | `scomm_connector` |
+| Custom Colours & Backgrounds | `accent_color` |
+| AI Tokens 1M | `ai_tokens_1m` |
+
+Product key: `"Scomm"`. Apps: `scommDesktop`, `scommLinux`, `office`. Surfaces: `scomm`, `office`.
 
 ## Change a price
 
 Find the plan, then edit `basePrice`. Leave the plan name and `"annual"` / `"monthly"` keys alone.
 
 ```json
-"Linux Version": {
+"SComm Connect": {
   "pricings": {
     "annual": { "currency": "USD", "basePrice": 5 }
   }
 }
 ```
 
-Change `5` to the new amount. Currency stays what we enabled on your billing (usually `USD`).
+Change `5` to the new amount. Keep `"USD"`.
 
 ## Change the text customers see
 
@@ -33,16 +47,16 @@ On the plan (or offering) set `"isActive": false`. Do **not** delete the key. If
 
 You add the keys. Your billing contact will sit with you.
 
-1. Put the offering under `products.<YourProduct>.offerings` (give it `resources.surfaces` that match a host).
+1. Put the offering under `products.Scomm.offerings` (give it `resources.surfaces` that match a host).
 2. Put a plan under `plans` with `offeringCodes` pointing at that offering key.
 3. `npm ci && npm run validate` — commit `hosts.json` if it changed.
 4. Open a PR.
 
-Shape to copy: [examples/sample-shop/catalog.json](../examples/sample-shop/catalog.json). Rename every key. Field list: [catalog.md](catalog.md).
+Field list: [catalog.md](catalog.md). Do not copy [examples/sample-shop/](../examples/sample-shop/) over the live root.
 
 ## First-login emails
 
-Optional [`auth.json`](auth.md). **No passwords.** Your billing contact will help. You still open the PR.
+Root [`auth.json`](auth.md) is yours to change (no passwords). You open the PR.
 
 ## Hard rules
 
@@ -52,4 +66,4 @@ Optional [`auth.json`](auth.md). **No passwords.** Your billing contact will hel
 | Delete a key people still pay for | Apply fails. Use `"isActive": false`. |
 | Hand-edit `hosts.json` / `schemas/` | Validate writes hosts; we ship schemas. |
 
-A green PR is not in the shop until we apply on your VM.
+A green PR is not in the shop until we apply on the Scomm VM.

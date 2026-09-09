@@ -2,9 +2,11 @@
 
 Day-to-day changes (price, description, hide a SKU): **[recipes.md](recipes.md)**. This page is the field list.
 
-Do not put database ids in this file. We assign those when we apply the catalog to your billing.
+Do not put database ids in this file. We assign those when we apply.
 
 Keep `"$schema": "./schemas/catalog.schema.json"` at the top.
+
+**Scomm live data is root `catalog.json`.** Product `Scomm`. Surfaces `scomm` / `office`. Hosts `scommDesktop`, `scommLinux`, `office`. `examples/` is not the shop.
 
 ## Example shape
 
@@ -52,7 +54,7 @@ Keep `"$schema": "./schemas/catalog.schema.json"` at the top.
 }
 ```
 
-You choose the words (`web`, `desktop`, host names, product names). Empty `"products": {}` is valid **only on the blank template**. A tenant fork must be filled before we apply.
+You choose the words (`web`, `desktop`, host names, product names). Scomm’s live keys are in the root file, not this skeleton.
 
 ## What each part is
 
@@ -61,7 +63,7 @@ You choose the words (`web`, `desktop`, host names, product names). Empty `"prod
 | `surfaces` | Labels for “which kind of app” (email vs office, web vs desktop, …). List them here before you use them on a SKU. |
 | `platforms` | Extra OS labels (today: `linux` if you have a Linux-only SKU). |
 | `hosts` | Your apps. Each host lists which `surfaces` it sells. Optional `excludePlatforms` hides Linux-only SKUs from a desktop host. |
-| `products` | What customers buy under. Empty `{}` is the blank template, not a live shop. |
+| `products` | What customers buy under. Scomm’s live product is root `"Scomm"`. Empty `{}` is not this fork. |
 | `offerings` | Add-ons / entitlements (codes your apps check). |
 | `plans` | Priced bundles. `offeringCodes` must be offering keys **on that product**. |
 | `pricings` | `annual` / `monthly` / … → `{ "currency": "USD", "basePrice": 10 }`. One currency per interval in this version. |
