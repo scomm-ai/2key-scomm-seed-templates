@@ -6,7 +6,7 @@ Do not put database ids in this file. We assign those when we apply.
 
 Keep `"$schema": "./schemas/catalog.schema.json"` at the top.
 
-**Scomm live data is root `catalog.json`.** Product `Scomm`. Surfaces `scomm` / `office`. Hosts `scommDesktop`, `scommLinux`, `office`. `examples/` is not the shop.
+**Scomm live data is root `catalog.json`.** Product `Scomm`. Surfaces `scomm` / `office`. Hosts `scommDesktop`, `scommLinux`, `office`. `examples/` is not the shop. IDR is a **different tenant** with its own seed repo — never merge IDR SKUs into this root file.
 
 ## Example shape
 
@@ -64,8 +64,8 @@ You choose the words (`web`, `desktop`, host names, product names). Scomm’s li
 | `platforms` | Extra OS labels (today: `linux` if you have a Linux-only SKU). |
 | `hosts` | Your apps. Each host lists which `surfaces` it sells. Optional `excludePlatforms` hides Linux-only SKUs from a desktop host. |
 | `products` | What customers buy under. Scomm’s live product is root `"Scomm"`. Empty `{}` is not this fork. |
-| `offerings` | Add-ons / entitlements (codes your apps check). |
-| `plans` | Priced bundles. `offeringCodes` must be offering keys **on that product**. |
+| `offerings` | **What the app unlocks** (codes your apps check). No price. One offering can sit on several plans. |
+| `plans` | **What the shop sells** (priced SKUs). `offeringCodes` must be offering keys **on that product**. A plan may list one offering (à la carte) or several (a bundle). |
 | `pricings` | `annual` / `monthly` / … → `{ "currency": "USD", "basePrice": 10 }`. One currency per interval in this version. |
 
 Optional `billingEngineTag` is a note for us (which catalog format this file was written against). `schemaVersion` is `1` for this format.
@@ -77,8 +77,10 @@ Optional `billingEngineTag` is a note for us (which catalog format this file was
 | `surfaces` | Which of your surfaces this add-on belongs to. |
 | `platforms` | Optional OS scope. |
 | `addonCode` | Code the app uses to gate the feature. Defaults to the offering key. |
-| `maxDevices` | Optional device cap. |
+| `maxDevices` | Optional per-machine cap that goes in the license (stand-in; prefer mailbox-style limits when you have them). |
 | `usageGrants` | Optional prepaid usage, e.g. `{ "my.meter": { "quantity": 1000 } }`. |
+
+`resources` are **enforced on one machine** (spam filter for N mailboxes, push-notifications for N mailboxes, how many mailboxes a user may create). They are not “total devices across the account.” Account-wide device bind is a different limit; we still allow `maxDevices` here for now.
 
 `npm run validate` checks the file shape. It will not catch a plan pointing at a missing offering, or a currency we have not enabled — we catch those when we apply.
 

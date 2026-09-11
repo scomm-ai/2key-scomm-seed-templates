@@ -18,16 +18,8 @@
 	},
 	"products": {
 		"Scomm": {
-			"description": "Optional Scomm add-ons: Linux, Local-AI, SComm Connect, Outlook OpenPGP ECC, Outlook OpenPGP ECC+PQC, accent colours, and related features",
+			"description": "Optional Scomm add-ons: Linux, Local-AI, Outlook OpenPGP ECC, Outlook OpenPGP ECC+PQC, and accent colours",
 			"isActive": true,
-			"meters": {
-				"scomm.ai.tokens": {
-					"displayName": "Scomm AI tokens",
-					"unit": "token",
-					"aggregation": "sum",
-					"description": "Prepaid AI inference tokens for Scomm assistants"
-				}
-			},
 			"offerings": {
 				"pgp": {
 					"displayName": "Outlook OpenPGP ECC",
@@ -58,36 +50,18 @@
 						"surfaces": ["scomm", "office"]
 					}
 				},
-				"scomm_connector": {
-					"displayName": "SComm Connect",
-					"resources": {
-						"addonCode": "scomm_connector",
-						"surfaces": ["scomm", "office"],
-						"maxDevices": 5
-					}
-				},
 				"accent_color": {
 					"displayName": "Custom Colours & Backgrounds",
 					"resources": {
 						"addonCode": "accent_color",
 						"surfaces": ["scomm"]
 					}
-				},
-				"ai_tokens_1m": {
-					"displayName": "AI Tokens 1M",
-					"resources": {
-						"surfaces": ["scomm"],
-						"usageGrants": {
-							"scomm.ai.tokens": { "quantity": 1000000 }
-						},
-						"validity_days": 30
-					}
 				}
 			},
 			"plans": {
 				"Outlook OpenPGP ECC": {
 					"description": "Classical OpenPGP (ECC) encrypt, sign, and key publish in the Outlook add-in.",
-					"trialDays": 0,
+					"trialDays": 30,
 					"offeringCodes": ["pgp"],
 					"pricings": {
 						"annual": { "currency": "USD", "basePrice": 5 }
@@ -95,7 +69,7 @@
 				},
 				"Outlook OpenPGP ECC+PQC": {
 					"description": "Post-quantum cryptography for Scomm Email and the Outlook add-in. One seat unlocks PQC on both surfaces.",
-					"trialDays": 0,
+					"trialDays": 30,
 					"offeringCodes": ["pqc"],
 					"pricings": {
 						"annual": { "currency": "USD", "basePrice": 15 }
@@ -103,7 +77,7 @@
 				},
 				"Linux Version": {
 					"description": "Run SCOMM.AI natively on Linux distributions. Full feature parity with Windows and macOS versions.",
-					"trialDays": 0,
+					"trialDays": 30,
 					"offeringCodes": ["linux"],
 					"pricings": {
 						"annual": { "currency": "USD", "basePrice": 5 }
@@ -117,14 +91,6 @@
 						"annual": { "currency": "USD", "basePrice": 5 }
 					}
 				},
-				"SComm Connect": {
-					"description": "Sync and access your communications across up to 5 devices seamlessly.",
-					"trialDays": 30,
-					"offeringCodes": ["scomm_connector"],
-					"pricings": {
-						"annual": { "currency": "USD", "basePrice": 5 }
-					}
-				},
 				"Custom Colours & Backgrounds": {
 					"description": "Unlock the full colour spectrum for accent colours and custom background gradients.",
 					"trialDays": 30,
@@ -133,12 +99,12 @@
 						"annual": { "currency": "USD", "basePrice": 5 }
 					}
 				},
-				"AI Tokens 1M": {
-					"description": "Prepaid 1,000,000 AI tokens (30-day validity). Top up anytime.",
-					"trialDays": 0,
-					"offeringCodes": ["ai_tokens_1m"],
+				"All Add-ons Bundle": {
+					"description": "Every Scomm add-on: Outlook OpenPGP ECC, Outlook OpenPGP ECC+PQC, Linux Version, Local-AI, and Custom Colours & Backgrounds.",
+					"trialDays": 30,
+					"offeringCodes": ["pgp", "pqc", "linux", "ai_assistant", "accent_color"],
 					"pricings": {
-						"monthly": { "currency": "USD", "basePrice": 10 }
+						"annual": { "currency": "USD", "basePrice": 25 }
 					}
 				}
 			}

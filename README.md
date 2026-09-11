@@ -18,7 +18,7 @@ you fill (we help) → you PR → trigger → we apply on the Scomm VM
 
 ## Do not
 
-- Rename live keys (`"pgp"`, `"Scomm"`, `"SComm Connect"`). Add a new key; hide the old one.
+- Rename live keys (`"pgp"`, `"Scomm"`, `"Linux Version"`). Add a new key; hide the old one.
 - Delete a key people still pay for. Set `"isActive": false`.
 - Hand-edit `hosts.json`, `schemas/`, or treat `examples/` as the live shop.
 - Put passwords or IdP secrets in git.

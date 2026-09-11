@@ -12,18 +12,19 @@ Shop card **titles** are the plan keys below. Search the file for the quoted nam
 | Outlook OpenPGP ECC+PQC | `pqc` |
 | Linux Version | `linux` |
 | Local-AI | `ai_assistant` |
-| SComm Connect | `scomm_connector` |
 | Custom Colours & Backgrounds | `accent_color` |
-| AI Tokens 1M | `ai_tokens_1m` |
+| All Add-ons Bundle | `pgp`, `pqc`, `linux`, `ai_assistant`, `accent_color` |
 
-Product key: `"Scomm"`. Apps: `scommDesktop`, `scommLinux`, `office`. Surfaces: `scomm`, `office`.
+Product key: `"Scomm"`. Apps: `scommDesktop`, `scommLinux`, `office`. Surfaces: `scomm`, `office`. Trial is 30 days on every plan.
+
+IDR is a **separate tenant** (own seed repo, own billing VM, own DB). Do not add IDR packages to this file.
 
 ## Change a price
 
 Find the plan, then edit `basePrice`. Leave the plan name and `"annual"` / `"monthly"` keys alone.
 
 ```json
-"SComm Connect": {
+"Local-AI": {
   "pricings": {
     "annual": { "currency": "USD", "basePrice": 5 }
   }
@@ -48,7 +49,7 @@ On the plan (or offering) set `"isActive": false`. Do **not** delete the key. If
 You add the keys. Your billing contact will sit with you.
 
 1. Put the offering under `products.Scomm.offerings` (give it `resources.surfaces` that match a host).
-2. Put a plan under `plans` with `offeringCodes` pointing at that offering key.
+2. Put a plan under `plans` with `offeringCodes` pointing at that offering key (or several keys for a bundle).
 3. `npm ci && npm run validate` — commit `hosts.json` if it changed.
 4. Open a PR.
 

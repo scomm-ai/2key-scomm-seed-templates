@@ -20,13 +20,6 @@
 		"SecMail": {
 			"description": "Scomm Email and Office add-ons",
 			"isActive": true,
-			"meters": {
-				"scomm.ai.tokens": {
-					"displayName": "Scomm AI tokens",
-					"unit": "token",
-					"aggregation": "sum"
-				}
-			},
 			"offerings": {
 				"pgp": {
 					"displayName": "Outlook OpenPGP ECC",
