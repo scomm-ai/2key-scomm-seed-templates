@@ -20,13 +20,6 @@
 		"Scomm": {
 			"description": "Scomm Email and Office add-ons",
 			"isActive": true,
-			"meters": {
-				"scomm.ai.tokens": {
-					"displayName": "Scomm AI tokens",
-					"unit": "token",
-					"aggregation": "sum"
-				}
-			},
 			"offerings": {
 				"pgp": {
 					"displayName": "Outlook OpenPGP ECC",
@@ -56,10 +49,18 @@
 						"addonCode": "ai_assistant",
 						"surfaces": ["scomm", "office"]
 					}
+				},
+				"accent_color": {
+					"displayName": "Custom Colours & Backgrounds",
+					"resources": {
+						"addonCode": "accent_color",
+						"surfaces": ["scomm"]
+					}
 				}
 			},
 			"plans": {
 				"Outlook OpenPGP ECC": {
+					"trialDays": 30,
 					"offeringCodes": ["pgp"],
 					"pricings": {
 						"annual": {
@@ -69,6 +70,7 @@
 					}
 				},
 				"Outlook OpenPGP ECC+PQC": {
+					"trialDays": 30,
 					"offeringCodes": ["pqc"],
 					"pricings": {
 						"annual": {
@@ -78,6 +80,7 @@
 					}
 				},
 				"Linux Version": {
+					"trialDays": 30,
 					"offeringCodes": ["linux"],
 					"pricings": {
 						"annual": {
@@ -87,11 +90,32 @@
 					}
 				},
 				"Local-AI": {
+					"trialDays": 30,
 					"offeringCodes": ["ai_assistant"],
 					"pricings": {
 						"annual": {
 							"currency": "USD",
 							"basePrice": 5
+						}
+					}
+				},
+				"Custom Colours & Backgrounds": {
+					"trialDays": 30,
+					"offeringCodes": ["accent_color"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 5
+						}
+					}
+				},
+				"All Add-ons Bundle": {
+					"trialDays": 30,
+					"offeringCodes": ["pgp", "pqc", "linux", "ai_assistant", "accent_color"],
+					"pricings": {
+						"annual": {
+							"currency": "USD",
+							"basePrice": 25
 						}
 					}
 				}
