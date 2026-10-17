@@ -6,16 +6,17 @@ Shop card **titles** are the plan keys below. Search the file for the quoted nam
 
 ## Your plan keys
 
-| Shop title | Offering key (do not rename) |
-|------------|------------------------------|
-| Outlook OpenPGP ECC | `pgp` |
-| Outlook OpenPGP ECC+PQC | `pqc` |
-| Linux Version | `linux` |
-| Local-AI | `ai_assistant` |
-| Custom Colours & Backgrounds | `accent_color` |
-| All Add-ons Bundle | `pgp`, `pqc`, `linux`, `ai_assistant`, `accent_color` |
+| Shop title | Offering key (do not rename) | Price / year |
+|------------|------------------------------|--------------|
+| Scomm Desktop | `desktop` | US$10 (required for every other add-on) |
+| AI-Assistant | `ai_assistant` | US$10 |
+| Post-Quantum E2EE | `pqc` | US$15 |
+| Custom Colours & Backgrounds | `accent_color` | US$5 |
+| Basic Bundle | `desktop`, `ai_assistant`, `pqc`, `accent_color` | US$25 |
 
-Product key: `"Scomm"`. Apps: `scommDesktop`, `scommLinux`, `office`. Surfaces: `scomm`, `office`. Trial is 30 days on every plan.
+Hidden (`"isActive": false`, kept for existing subscriptions): Scomm Linux / Linux Version (`linux`, counts as `desktop` on older licenses), Local-AI, Outlook OpenPGP ECC (`pgp`), Outlook OpenPGP ECC+PQC, All Add-ons Bundle, and the preview plans Campaign-Manager and Driving-Mode.
+
+Product key: `"Scomm"`. App: `scommDesktop` (Windows, macOS, Linux). Mobile builds are not licensed. Surface: `scomm` (`office` stays declared for the retired Outlook offering only). Every offering covers up to 3 devices (`maxDevices: 3`). Trial is 30 days on every plan.
 
 IDR is a **separate tenant** (own seed repo, own billing VM, own DB). Do not add IDR packages to this file.
 
@@ -24,14 +25,14 @@ IDR is a **separate tenant** (own seed repo, own billing VM, own DB). Do not add
 Find the plan, then edit `basePrice`. Leave the plan name and `"annual"` / `"monthly"` keys alone.
 
 ```json
-"Local-AI": {
+"AI-Assistant": {
   "pricings": {
-    "annual": { "currency": "USD", "basePrice": 5 }
+    "annual": { "currency": "USD", "basePrice": 10 }
   }
 }
 ```
 
-Change `5` to the new amount. Keep `"USD"`.
+Change `10` to the new amount. Keep `"USD"`.
 
 ## Change the text customers see
 

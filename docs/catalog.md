@@ -6,7 +6,7 @@ Do not put database ids in this file. We assign those when we apply.
 
 Keep `"$schema": "./schemas/catalog.schema.json"` at the top.
 
-**Scomm live data is root `catalog.json`.** Product `Scomm`. Surfaces `scomm` / `office`. Hosts `scommDesktop`, `scommLinux`, `office`. `examples/` is not the shop. IDR is a **different tenant** with its own seed repo — never merge IDR SKUs into this root file.
+**Scomm live data is root `catalog.json`.** Product `Scomm`. Surface `scomm` (`office` only for the retired Outlook offering). Host `scommDesktop` (Windows, macOS, Linux). `examples/` is not the shop. IDR is a **different tenant** with its own seed repo — never merge IDR SKUs into this root file.
 
 ## Example shape
 
